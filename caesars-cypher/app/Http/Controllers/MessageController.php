@@ -12,38 +12,70 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $messages = Message::all();
-        return view('messages.index',['originalMessages'=>$messages]);
-    }
-    public function showForm(){
+    // public function getList()
+    // {
+    //     $messages = Message::all();
+    //     return view('messages.index',['encryptedMsg'=>$messages]);
+    // }
+    public function create(){
         return view('messages.create');
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
-    public function chiffrer($msg, $offset)
+     */ 
+
+    public function chiffrer()
     {
-       
-        // $alphabet = 'abcdefghijklmnopqrstuvwxyz';
-        // $alphabetArray = str_split($alphabet);
-        // foreach ($messages as $value) {
-        //     $Msg = $value['message'];
-        //     $MsgLen = strlen($Msg); 
-        //     for($i=0; $i<$MsgLen; $i++){
-        //         if(($Pos= strpos($alphabet, $Msg[$i])) !== FALSE)
-        //         {
-        //             if($Action){
-        //                 if()
-        //             }
-        //         }
-        //     }
-        // }                       
+        $str = "Hello World!";
+        $msgArr=str_split($str);
+        $lettres = 'abcdefghijklmnopqrstuvwxyz';
+        $alpha = str_split($lettres);
+        $newStr = "";
+        foreach ($msgArr as $value) {
+            $pos=array_search($value, $alpha);
+            $newPos = $pos + 3;
+            $newChar = $alpha[$newPos];
+            $newStr .= $newChar;           
+        } 
+        dd($newStr);
+        // for($i=0;$i<=25;$i++)
+        // {
+        //     $x[$i]=$i;
+        // //    dd($x[$a].$Tab[$a]);
+        // }        
+        // //dd($Tab);
+        // $i=24;
+        // $Tab = str_split($lettres);
+        //     if($i>=23)
+        //     { 
+        //         if($i=24)
+        //             $i=-2;  
+        //         if($i=25)
+        //             $i=-1;
+        //     }    
+        //     $j= $i + 3;
+        // dd($Tab[$j]);
+        return view('messages.index');
     }
+//
+          
+        
+        // }
+        
+
+        // $message = str_split($msg);
+        // $MsgLen = strlen($message);
+        // $texteChiffre = "";
+        // array_map(callback, arr1)
+        // foreach ($variable as $key => $value) {
+        //     # code...
+        // }
+        
+
     
 
     /**
@@ -54,7 +86,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

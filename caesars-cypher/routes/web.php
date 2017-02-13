@@ -12,5 +12,6 @@
 */
 
 
-Route::get('/','MessageController@index');
-Route::get('/messages/create','MessageController@showForm');
+Route::get('/','MessageController@chiffrer');
+Route::get('/messages/create','MessageController@create');
+Route::post('/messages/show', 'MessageController@show');
