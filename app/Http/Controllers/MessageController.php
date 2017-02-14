@@ -30,35 +30,22 @@ class MessageController extends Controller
 
     public function chiffrer()
     {
-        $str = "Hello World!";
+        $str = strtolower("Hello World!");
         $msgArr=str_split($str);
         $lettres = 'abcdefghijklmnopqrstuvwxyz';
         $alpha = str_split($lettres);
         $newStr = "";
         foreach ($msgArr as $value) {
             $pos=array_search($value, $alpha);
-            $newPos = $pos + 3;
-            $newChar = $alpha[$newPos];
-            $newStr .= $newChar;           
+            if($pos === false){
+                $newStr.= $value;
+            }else{
+                $newPos = ($pos + 3)%26;
+                $newChar = $alpha[$newPos];
+                $newStr .= $newChar;                                 
+            }
         } 
         dd($newStr);
-        // for($i=0;$i<=25;$i++)
-        // {
-        //     $x[$i]=$i;
-        // //    dd($x[$a].$Tab[$a]);
-        // }        
-        // //dd($Tab);
-        // $i=24;
-        // $Tab = str_split($lettres);
-        //     if($i>=23)
-        //     { 
-        //         if($i=24)
-        //             $i=-2;  
-        //         if($i=25)
-        //             $i=-1;
-        //     }    
-        //     $j= $i + 3;
-        // dd($Tab[$j]);
         return view('messages.index');
     }
 //
